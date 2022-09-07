@@ -151,10 +151,17 @@ function windowScroll() {
     console.log("scroll y", window.scrollY, window.innerHeight)
     const container = document.querySelector("#characters")
     console.log("container height", container.clientHeight)
+
+    const windowSum = window.scrollY + window.innerHeight
+    const reachedEnd = windowSum > container.clientHeight
+
+    if( reachedEnd ) {
+        loadMore()
+    }
 }
 
 function setupInfiniteScroll() {
-    window,addEventListener("scroll", windowScroll)
+    window.addEventListener("scroll", windowScroll)
 }
 
 setupPagination()
