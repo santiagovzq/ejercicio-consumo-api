@@ -28,12 +28,22 @@ const apiUrl = "https://breakingbadapi.com/api/"
 //     }
 // ]
 
-let numberPlus = 0
-let addBy = 6
+let pageNum = 0
+let elementsPerPage = 6
 
-function doQuery( url, displayFunction ) {
+function doQuery({ 
+    endpoint,
+    displayFunction,
+    pageNum,
+    elementsPerPage,
+}) {
+
+    const offset = pageNum * elementsPerPage
+
+    const queryString = `?limit=${elementsPerPage}&offset=${offset}`
+
     // Mandamos una solicitud y obtenemos una promesa
-    const request = fetch(apiUrl + url)
+    const request = fetch(apiUrl + endpoint + queryString)
 
     // Esperar a que resuelva la promesa
     request.then(function(response) {
@@ -55,7 +65,7 @@ function doQuery( url, displayFunction ) {
     console.log("request", request)
 }
 
-doQuery()
+
 
 function formatCharacter( character ) {
     return {
@@ -123,8 +133,13 @@ function createCharacterHTML( character ) {
 
 
 function loadMore() {
-    numberPlus = numberPlus+addBy
-    doQuery("characters?limit="+addBy+"&offset="+numberPlus, displayCharacters)
+    doQuery({
+        endpoint:"characters", 
+        pageNum,
+        elementsPerPage,
+        displayFunction: displayCharacters
+    })
+    pageNum++
 }
 
 function setupPagination() {
@@ -145,7 +160,8 @@ function setupInfiniteScroll() {
 setupPagination()
 setupInfiniteScroll()
 
-doQuery("characters?limit=6&offset="+numberPlus, displayCharacters)
+loadMore()
+// doQuery("characters?limit=6&offset="+pageNum, displayCharacters)
 // doQuery("characters")
 // doQuery("episodes")
 
