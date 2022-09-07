@@ -28,6 +28,9 @@ const apiUrl = "https://breakingbadapi.com/api/"
 //     }
 // ]
 
+let numberPlus = 0
+let addBy = 6
+
 function doQuery( url, displayFunction ) {
     // Mandamos una solicitud y obtenemos una promesa
     const request = fetch(apiUrl + url)
@@ -118,7 +121,31 @@ function createCharacterHTML( character ) {
     return characterBox
 }
 
-doQuery("characters", displayCharacters)
+
+function loadMore() {
+    numberPlus = numberPlus+addBy
+    doQuery("characters?limit="+addBy+"&offset="+numberPlus, displayCharacters)
+}
+
+function setupPagination() {
+    const btn = document.querySelector("#load-more")
+    btn.addEventListener("click", loadMore)
+}
+
+function windowScroll() {
+    console.log("scroll y", window.scrollY, window.innerHeight)
+    const container = document.querySelector("#characters")
+    console.log("container height", container.clientHeight)
+}
+
+function setupInfiniteScroll() {
+    window,addEventListener("scroll", windowScroll)
+}
+
+setupPagination()
+setupInfiniteScroll()
+
+doQuery("characters?limit=6&offset="+numberPlus, displayCharacters)
 // doQuery("characters")
 // doQuery("episodes")
 
