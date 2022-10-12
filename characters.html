@@ -1,37 +1,57 @@
+<!-- ! -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Consulta API</title>
+
+    <!-- link -->
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    
+
+
+    <!-- section#characters -->
     <section id="characters">
+
+        <!-- article.character.model -->
         <article class="character model">
-        <div class="image">
-            <img src="https://unsplash.it/300" alt="">
-        </div>
-
-        <div class="text">
-            <h3 class="name">
-                Nombre de personaje
-            </h3>
-            <p class="nickname">
-                Apodo
-            </p>
-        </div>
+            <!-- div.image -->
+            <div class="image">
+                <!-- img -->
+                <img src="https://fakeimg.pl/300x300" alt="">
+            </div>
+            <!-- .text -->
+            <div class="text">
+                <!-- h3.name -->
+                <h3 class="name">
+                    Nombre de personaje
+                </h3>
+                <!-- p.nickname -->
+                <p class="nickname">
+                    Apodo
+                </p>
+            </div>
         </article>
-    </section>
 
+
+    </section>    
+
+
+    <!-- footer#pagination -->
     <footer id="pagination">
+        <!-- button#load-more -->
         <button id="load-more">
             Cargar más
         </button>
     </footer>
 
+
+    <!-- script -->
+    <script src="utilities.js"></script>
     <script src="characters.js"></script>
+
 </body>
 </html>
